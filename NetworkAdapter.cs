@@ -11,10 +11,7 @@ public static class NetworkAdapter
     {
         var temp = Console.ReadLine();
         if (temp is 0)
-        {
-
             DisableNetworkAdapter();
-        }
         else if (temp > 0 && temp < 254)
             SetNetworkAdapter("10.200.200." + temp, "255.255.255.0", "10.200.200.254", "114.114.114.114");
         else
@@ -56,12 +53,10 @@ public static class NetworkAdapter
         var mc = new ManagementClass("Win32_NetworkAdapterConfiguration");
         var moc = mc.GetInstances();
         foreach (var o in moc)
-        {
             if (!(bool)o["IPEnabled"])
                 continue;
-            return (ManagementObject)o;
-        }
-
+            else
+                return (ManagementObject)o;
         return null;
     }
 }
